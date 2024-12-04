@@ -1,0 +1,35 @@
+{
+    "api_endpoint": "http://localhost:11434/api/generate",
+    "agents": {
+        "coordinator": {
+            "model": "jwalsh/coordinator:latest",
+            "description": "Task decomposition and workflow management"
+        },
+        "implementer": {
+            "model": "jwalsh/jwalsh:latest",
+            "description": "Technical implementation and development"
+        },
+        "writer": {
+            "model": "jwalsh/technical-writer:latest",
+            "description": "Documentation and technical writing"
+        },
+        "innovator": {
+            "model": "jwalsh/emma:latest",
+            "description": "Innovation and creative solutions"
+        },
+        "analyst": {
+            "model": "jwalsh/jihye:latest",
+            "description": "Analysis and critical evaluation"
+        }
+    },
+    "logging": {
+        "file": "${HOME}/.anthropic/logs/agents.log",
+        "level": "INFO",
+        "format": "%(asctime)s [%(levelname)s] %(message)s"
+    },
+    "monitoring": {
+        "enabled": true,
+        "interval": 300,
+        "metrics": ["response_time", "success_rate", "error_count"]
+    }
+}

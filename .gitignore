@@ -11,10 +11,6 @@
 # Allow specific directories and their contents
 !scripts/
 !scripts/**
-!tools/
-!tools/**
-!journal/
-!journal/**
 !config/
 !config/**
 !docs/
