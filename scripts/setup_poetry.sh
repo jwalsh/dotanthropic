@@ -1,5 +1,5 @@
 # Initialize project
-poetry init
+# poetry init
 
 # Core AI Assistant Tools
 poetry add aider-chat          # AI pair programming
