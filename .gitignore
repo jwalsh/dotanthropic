@@ -8,9 +8,17 @@
 !shell.nix
 !.gitignore
 
-# Allow scripts directory and its contents
+# Allow specific directories and their contents
 !scripts/
 !scripts/**
+!tools/
+!tools/**
+!journal/
+!journal/**
+!config/
+!config/**
+!docs/
+!docs/**
 
 # Always ignore these even if matched above
 .git/
