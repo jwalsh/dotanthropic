@@ -1,5 +1,5 @@
 #+TITLE: Changelog
-#+DATE: 2024-11-08
+#+DATE: 2024-12-03
 * [Unreleased]
 ** Changed
 
