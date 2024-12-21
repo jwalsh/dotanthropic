@@ -1,5 +1,5 @@
 #+TITLE: Changelog
-#+DATE: 2024-12-03
+#+DATE: 2024-12-07
 * [Unreleased]
 ** Changed
 
@@ -16,6 +16,7 @@
 - add basic makefile
 
 **** Scripts
+- add agent verification script
 - Enhance tool-versions.sh to save QR code as PNG
 - add changelog generator
 - add essential bootstrap scripts
@@ -29,6 +30,7 @@
 - convert scripts README to org format (docs)
 
 *** Documentation
+- add system documentation
 - Add entry for tool-versions.sh enhancement [skip ci] (changelog)
 - update changelog [skip ci] (changelog)
 - add initial changelog (changelog)
@@ -43,5 +45,6 @@
 - configure source control (git)
 
 *** Build
+- update gitignore to track tools and journal directories
 - update changelog generation and dev dependencies [skip ci]
 

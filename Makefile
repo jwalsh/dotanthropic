@@ -137,3 +137,33 @@ changelog-commit: ## Generate and commit CHANGELOG.org with [skip ci]
 
 setup-simple: ## Initial env without Nix
 	sh ./scripts/setup_simple.sh
+
+gpg-key: ## Generate and configure GPG key
+	@echo "Generating GPG key..."
+	@if gpg --list-secret-keys computeruse@defrecord.com >/dev/null 2>&1; then \
+		echo "GPG key already exists for computeruse@defrecord.com"; \
+	else \
+		echo "Creating new GPG key..."; \
+		gpg --batch --passphrase '' --quick-gen-key computeruse@defrecord.com default default never; \
+	fi
+	@GPG_KEY_ID=$$(gpg --list-secret-keys --keyid-format LONG computeruse@defrecord.com | grep sec | awk '{print $$2}' | cut -d'/' -f2); \
+	echo "GPG Key ID: $$GPG_KEY_ID"; \
+	gpg --armor --export $$GPG_KEY_ID > $(ANTHROPIC_DIR)/.gnupg/gpg_key.pub
+
+github-gpg: validate-token gpg-key ## Upload GPG key to GitHub
+	@echo "Uploading GPG key to GitHub..."
+	@if [ -f "$(ANTHROPIC_DIR)/.gnupg/gpg_key.pub" ]; then \
+		if [ -n "$$GITHUB_TOKEN" ]; then \
+			curl -X POST -H "Authorization: token $$GITHUB_TOKEN" \
+				-H "Content-Type: application/json" \
+				-d "{\"armored_public_key\": \"$$(cat $(ANTHROPIC_DIR)/.gnupg/gpg_key.pub)\"}" \
+				https://api.github.com/user/gpg_keys; \
+			echo "GPG key uploaded to GitHub"; \
+		else \
+			echo "Error: GITHUB_TOKEN not set"; \
+			exit 1; \
+		fi \
+	else \
+		echo "Error: GPG public key not found"; \
+		exit 1; \
+	fi
