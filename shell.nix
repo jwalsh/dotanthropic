@@ -123,7 +123,6 @@ in pkgs.mkShell {
     socat
     
     # Cloud and container tools
-    awscli2
     docker
     docker-compose
     kubectl
